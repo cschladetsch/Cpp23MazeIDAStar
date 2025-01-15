@@ -2,6 +2,10 @@
 
 This project implements a maze generator and solver using **C++23**. The maze is randomly generated and always ensures a valid path from the start (top-left corner) to the goal (bottom-right corner). The solution is visualized in real-time using ANSI colours provided by the `rang` library.
 
+## Example
+
+[Example](resources/CppMaze2.gif)
+
 ## Features
 - Randomized maze generation with guaranteed solvability.
 - Iterative Deepening A* (IDA*) algorithm to find the solution.
