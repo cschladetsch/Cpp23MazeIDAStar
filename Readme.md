@@ -4,7 +4,8 @@ This project implements a maze generator and solver using **C++23**. The maze is
 
 ## Example
 
-[Example](resources/CppMaze2.gif)
+[Example](resources/CppMaze.gif)
+[Example2](resources/CppMaze2.gif)
 
 ## Features
 - Randomized maze generation with guaranteed solvability.
