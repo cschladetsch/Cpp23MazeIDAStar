@@ -1,12 +1,13 @@
 #include <iostream>
 #include <vector>
+#include <map>
 #include <stack>
 #include <queue>
 #include <cmath>
 #include <tuple>
 #include <algorithm>
-#include <functional> // For std::function
-#include <random>     // For std::random_device and std::shuffle
+#include <functional>
+#include <random>
 #include <chrono>
 #include <thread>
 #include "rang.hpp"
@@ -19,29 +20,45 @@ public:
         generateMaze();
     }
 
-    void displayMaze() const {
-        system("clear"); // Clear the console for animation
-        // Display the top border
-        cout << rang::fg::cyan << '+' << string(size * 2 - 1, '-') << '+' << rang::style::reset << "\n";
-        for (int y = 0; y < size; ++y) {
-            cout << rang::fg::cyan << '|' << rang::style::reset; // Left border
-            for (int x = 0; x < size; ++x) {
-                if (maze[y][x] == '#') {
-                    cout << rang::fg::red << maze[y][x] << rang::style::reset << ' ';
-                } else if (maze[y][x] == ' ') {
-                    cout << rang::fg::green << maze[y][x] << rang::style::reset << ' ';
-                } else if (maze[y][x] == '*') {
-                    cout << rang::fg::yellow << maze[y][x] << rang::style::reset << ' ';
-                } else if (maze[y][x] == '+') {
-                    cout << rang::fg::blue << maze[y][x] << rang::style::reset << ' ';
-                }
-            }
-            cout << rang::fg::cyan << '|' << rang::style::reset << "\n"; // Right border
-        }
-        // Display the bottom border
-        cout << rang::fg::cyan << '+' << string(size * 2 - 1, '-') << '+' << rang::style::reset << "\n";
-        cout.flush();
-    }
+    void displayMaze() const 
+	{
+		system("clear");
+		auto drawBorder = [this]() {
+			cout 
+				<< rang::fg::cyan 
+				<< '+' << string(size * 2 - 1, '-') 
+				<< '+' << rang::style::reset << "\n";
+		};
+
+		auto drawCell = [](char cell) {
+			static const std::map<char, rang::fg> colorMap = {
+				{'#', rang::fg::red},
+				{' ', rang::fg::green},
+				{'*', rang::fg::yellow},
+				{'+', rang::fg::blue}
+			};
+
+			auto it = colorMap.find(cell);
+			if (it != colorMap.end()) {
+				cout << it->second << cell << rang::style::reset << ' ';
+			} else {
+				cout << cell << ' ';
+			}
+		};
+
+		for (int y = 0; y < size; ++y) {
+			cout << rang::fg::cyan << '|' << rang::style::reset;
+
+			for (int x = 0; x < size; ++x) {
+				drawCell(maze[y][x]);
+			}
+
+			cout << rang::fg::cyan << '|' << rang::style::reset << "\n";
+		}
+
+		drawBorder();
+		cout.flush();
+	}
 
     void clearVisited() {
         for (int y = 0; y < size; ++y) {
