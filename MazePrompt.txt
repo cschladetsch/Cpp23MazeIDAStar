@@ -1,0 +1,11 @@
+Write a C++23 program that generates a square maze of a size provided via the command line.
+
+The maze must be solvable.
+
+Solve it using the Iterative Deepening A* (IDA*) algorithm, and visualizes the solution in real time.
+
+The maze's walls and spaces should be displayed in color using rang.hpp. 
+
+Include functions to generate the maze, compute a heuristic and implement the IDA* algorithm with a 200ms pause between steps for visualization. Display the maze, marking the solution path distinctly.  
+
+Use efficient algorithms and modern C++ standards
