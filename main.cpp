@@ -21,7 +21,8 @@ public:
     }
 
     void displayMaze() const {
-        system("clear");
+        //system("clear");
+        std::cout << "\033[2J\033[H";
         auto drawBorder = [this]() {
             cout 
                 << rang::fg::cyan 
