@@ -20,45 +20,41 @@ public:
         generateMaze();
     }
 
-    void displayMaze() const 
-	{
-		system("clear");
-		auto drawBorder = [this]() {
-			cout 
-				<< rang::fg::cyan 
-				<< '+' << string(size * 2 - 1, '-') 
-				<< '+' << rang::style::reset << "\n";
-		};
+    void displayMaze() const {
+        system("clear");
+        auto drawBorder = [this]() {
+            cout 
+                << rang::fg::cyan 
+                << '+' << string(size * 2 - 1, '-') 
+                << '+' << rang::style::reset << "\n";
+        };
 
-		auto drawCell = [](char cell) {
-			static const std::map<char, rang::fg> colorMap = {
-				{'#', rang::fg::red},
-				{' ', rang::fg::green},
-				{'*', rang::fg::yellow},
-				{'+', rang::fg::blue}
-			};
+        auto drawCell = [](char cell) {
+            static const std::map<char, rang::fg> colorMap = {
+                {'#', rang::fg::red},
+                {' ', rang::fg::green},
+                {'*', rang::fg::yellow},
+                {'+', rang::fg::blue}
+            };
+            auto it = colorMap.find(cell);
+            if (it != colorMap.end()) {
+                cout << it->second << cell << rang::style::reset << ' ';
+            } else {
+                cout << cell << ' ';
+            }
 
-			auto it = colorMap.find(cell);
-			if (it != colorMap.end()) {
-				cout << it->second << cell << rang::style::reset << ' ';
-			} else {
-				cout << cell << ' ';
-			}
-		};
+        }; 
 
-		for (int y = 0; y < size; ++y) {
-			cout << rang::fg::cyan << '|' << rang::style::reset;
-
-			for (int x = 0; x < size; ++x) {
-				drawCell(maze[y][x]);
-			}
-
-			cout << rang::fg::cyan << '|' << rang::style::reset << "\n";
-		}
-
-		drawBorder();
-		cout.flush();
-	}
+        for (int y = 0; y < size; ++y) {
+            cout << rang::fg::cyan << '|' << rang::style::reset;
+            for (int x = 0; x < size; ++x) {
+                drawCell(maze[y][x]);
+            }
+            cout << rang::fg::cyan << '|' << rang::style::reset << "\n";
+        }
+        drawBorder();
+        cout.flush();
+    }
 
     void clearVisited() {
         for (int y = 0; y < size; ++y) {
