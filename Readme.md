@@ -1,6 +1,6 @@
 # Maze Solver
 
-This project implements a maze generator and solver using **C++23**. The maze is randomly generated and ensures there is always a valid path from the start (top-left corner) to the goal (bottom-right corner). The solution is visualized in real-time using ANSI colors provided by the `rang` library.
+This project implements a maze generator and solver using **C++23**. The maze is randomly generated and always ensures a valid path from the start (top-left corner) to the goal (bottom-right corner). The solution is visualized in real-time using ANSI colours provided by the `rang` library.
 
 ## Features
 - Randomized maze generation with guaranteed solvability.
@@ -15,13 +15,18 @@ This project implements a maze generator and solver using **C++23**. The maze is
 ## Dependencies
 - **C++23 Compiler**: Ensure your environment supports C++23.
 - [rang.hpp](https://github.com/agauniyal/rang): Header-only library for colorizing terminal output.
+- rang will be installed locally in the project folder if not found.
 
 ## How to Build
 
 ```bash
-./r N
+$ mkdir -p build && cd build && cmake .. && make
 ```
+Or, to do it all in one step and run the executable with an argument:
 
+```bash
+$ ./r N
+```
 Where N is an odd number greater than 5.
 
 ## Usage
@@ -63,6 +68,3 @@ This project is open-source and available under the MIT License.
 ## Acknowledgments
 - **rang.hpp** for ANSI color support.
 - Iterative Deepening A* inspiration from AI pathfinding techniques.
-```
-
-You can copy this directly into your GitHub repository's `README.md` file. Let me know if you need additional adjustments!
